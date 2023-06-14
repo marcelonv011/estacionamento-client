@@ -16,7 +16,7 @@ export class CondutorClient {
 
     public async findById(id: number) : Promise<Condutor> {
         try {
-            return (await this.axiosClient.get<Condutor>(`/${id}`)).data
+            return (await this.axiosClient.get<Condutor>(`?id=${id}`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
@@ -25,7 +25,7 @@ export class CondutorClient {
 
     public async findAll() : Promise<Condutor[]> {
         try {
-            return (await this.axiosClient.get<Condutor[]>(``)).data
+            return (await this.axiosClient.get<Condutor[]>(`/lista`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
