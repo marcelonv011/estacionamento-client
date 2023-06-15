@@ -34,5 +34,14 @@ import axios, { AxiosInstance } from "axios";
         }
     }
     
+    public async atualizar(marca: Marca) : Promise<void> {
+        try{
+            return (await this.axiosClient.put(`/${marca.id}`, marca)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
+
 }
  
