@@ -42,4 +42,21 @@ export class MovimentacaoClient {
         }
     }
 
+    public async atualizar(movimentacao: Movimentacao) : Promise<void> {
+        try {
+            return (await this.axiosClient.put(`/${movimentacao.id}`, movimentacao)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
+
+    public async excluir(movimentacao: Movimentacao) : Promise<void> {
+        try {
+            return (await this.axiosClient.delete(`/${movimentacao.id}`)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
 }
