@@ -24,4 +24,22 @@ export class MovimentacaoClient {
         }
     }
 
+    public async findAll() : Promise<Movimentacao[]> {
+        try {
+            return (await this.axiosClient.get<Movimentacao[]>(`/lista`)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
+
+    public async cadastrar(movimentacao: Movimentacao) : Promise<void> {
+        try {
+            return (await this.axiosClient.post(``, movimentacao)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
+
 }
