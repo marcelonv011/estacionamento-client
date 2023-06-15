@@ -1,12 +1,21 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/condutorlist">condutor</router-link> |
+      <router-link to="/marcalist">marca</router-link>
+    </div>
   </nav>
   <router-view />
 </template>
 
 <style lang="scss">
+$primary: #900;
+$enable-shadows: true;
+$prefix: "mo-";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
