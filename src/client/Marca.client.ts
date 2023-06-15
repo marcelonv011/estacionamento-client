@@ -25,6 +25,14 @@ import axios, { AxiosInstance } from "axios";
         }
     }
 
+    public async cadastrar(marca: Marca) : Promise<void> {
+        try {
+            return (await this.axiosClient.post(``, marca)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
     
 }
  
