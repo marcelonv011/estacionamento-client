@@ -51,5 +51,12 @@ export class VeiculoClient {
         }
     }
 
-    
+    public async excluir(veiculo: Veiculo) : Promise<void> {
+        try {
+            return (await this.axiosClient.delete(`/${veiculo.id}`)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
 }
