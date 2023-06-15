@@ -24,4 +24,13 @@ export class ModeloClient {
         }
     }
 
+    public async findAll() : Promise<Modelo[]> {
+        try {
+            return (await this.axiosClient.get<Modelo[]>(`/lista`)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
+
 }
