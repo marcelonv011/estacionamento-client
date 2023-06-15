@@ -43,5 +43,14 @@ import axios, { AxiosInstance } from "axios";
         }
     }
 
+    public async excluir(marca: Marca) : Promise<void> {
+        try{
+            return (await this.axiosClient.delete(`/${marca.id}`)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
+
 }
  
