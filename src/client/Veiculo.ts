@@ -24,5 +24,14 @@ export class VeiculoClient {
         }
     }
 
+    public async findAll() : Promise<Veiculo[]> {
+        try {
+            return (await this.axiosClient.get<Veiculo[]>(`/lista`)).data
+        }
+        catch(error:any){
+            return Promise.reject(error.response)
+        }
+    }
+
     
 }
