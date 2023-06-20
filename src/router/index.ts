@@ -16,10 +16,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/condutorlist',
-    name: 'condutorlist',
+    path: '/saidalist',
+    name: 'saidalist',
 
-    component: () => import('../views/condutor/CondutorListView.vue')
+    component: () => import('../views/movimentacao/SaidaListView.vue')
   },
   {
     path: '/marcalist',
