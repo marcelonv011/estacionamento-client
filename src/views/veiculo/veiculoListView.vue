@@ -67,8 +67,8 @@
   <script lang="ts">
   export default {
     methods: {
-        registrarcondutorredirect() {
-        this.$router.push('registrarcondutor');
+        registrarveiculoredirect() {
+        this.$router.push('registrarveiculo');
       }
     }
   }
