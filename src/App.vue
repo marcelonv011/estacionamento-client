@@ -8,13 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item"> 
-          <router-link class="nav-link custom-link" aria-current="page" to="/"><img src="./assets/home-circle.png" alt="home" width="25" height="25" class="home-icon"> Home</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link custom-link" to="/about">about</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link custom-link" to="/saidalist"> <img src="./assets/card-account-details-outline.png" alt="home" width="25" height="25" class="home-icon">Saida</router-link>
+          <router-link class="nav-link custom-link" aria-current="page" to="/saidalist"><img src="./assets/card-account-details-outline.png" alt="saida" width="25" height="25" class="home-icon"> Saida</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link custom-link" to="/marcalist">marca</router-link>
