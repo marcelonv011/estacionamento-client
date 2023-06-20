@@ -38,6 +38,18 @@ const routes: Array<RouteRecordRaw> = [
 
     component: () => import('../views/modelo/RegistrarModelo.vue')
   },
+  {
+    path: '/condutorlist',
+    name: 'condutorlist',
+
+    component: () => import('../views/condutor/CondutorListView.vue')
+  },
+  {
+    path: '/registrarcondutor',
+    name: 'registrarcondutor',
+
+    component: () => import('../views/condutor/RegistrarCondutor.vue')
+  }
 ]
 
 const router = createRouter({

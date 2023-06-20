@@ -1,15 +1,19 @@
 <template>
     <div class="marca">
-      <button type="button" class="btn btn-success mt-4" @click="registrarmarcaredirect">Cadastrar marca</button>
+      <button type="button" class="btn btn-success mt-4" @click="registrarcondutorredirect">Cadastrar condutor</button>
       <table class="table mt-4 pequeña-table">
     <thead>
       <tr>
         <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Telefone</th>
         <th scope="col">Opcoes</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <td></td>
+        <td></td>
         <td></td>
         <td><button type="button" class="btn btn-secondary btn-color "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
@@ -59,8 +63,8 @@
   <script lang="ts">
   export default {
     methods: {
-      registrarmarcaredirect() {
-        this.$router.push('registrarmarca');
+        registrarcondutorredirect() {
+        this.$router.push('registrarcondutor');
       }
     }
   }
