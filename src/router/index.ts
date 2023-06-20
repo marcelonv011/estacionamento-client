@@ -3,19 +3,6 @@ import HomeView from '../views/HomeView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  },
-  {
     path: '/saidalist',
     name: 'saidalist',
 
@@ -26,7 +13,31 @@ const routes: Array<RouteRecordRaw> = [
     name: 'marcalist',
 
     component: () => import('../views/marca/MarcaListView.vue')
-  }
+  },
+  {
+    path: '/registrarentrada',
+    name: 'registrarentrada',
+
+    component: () => import('../views/movimentacao/RegistrarEntrada.vue')
+  },
+  {
+    path: '/registrarmarca',
+    name: 'registrarmarca',
+
+    component: () => import('../views/marca/RegistrarMarca.vue')
+  },
+  {
+    path: '/modelolist',
+    name: 'modelolist',
+
+    component: () => import('../views/modelo/ModeloListView.vue')
+  },
+  {
+    path: '/registrarmodelo',
+    name: 'registrarmodelo',
+
+    component: () => import('../views/modelo/RegistrarModelo.vue')
+  },
 ]
 
 const router = createRouter({
