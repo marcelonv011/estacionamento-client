@@ -3,7 +3,7 @@ import axios, { AxiosInstance } from "axios";
 
  
 
- export class MarcaClient {
+ class MarcaClient {
 
     private axiosClient : AxiosInstance
 
@@ -60,6 +60,7 @@ import axios, { AxiosInstance } from "axios";
             return Promise.reject(error.response)
         }
     }
-
+    
 }
  
+export default new MarcaClient();

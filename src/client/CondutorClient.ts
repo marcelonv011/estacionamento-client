@@ -1,7 +1,7 @@
 import { Condutor } from "@/model/Condutor";
 import axios, { AxiosInstance } from "axios";
 
-export class CondutorClient {
+class CondutorClient {
 
     private axiosClient: AxiosInstance
 
@@ -60,3 +60,5 @@ export class CondutorClient {
     }
 
 }
+
+export default new CondutorClient();

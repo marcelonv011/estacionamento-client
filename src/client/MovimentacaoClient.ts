@@ -2,7 +2,7 @@ import { Movimentacao } from "@/model/Movimentacao";
 import axios, { AxiosInstance } from "axios";
 
 
-export class MovimentacaoClient {
+class MovimentacaoClient {
 
     private axiosClient: AxiosInstance
 
@@ -60,3 +60,5 @@ export class MovimentacaoClient {
         }
     }
 }
+
+export default new MovimentacaoClient();

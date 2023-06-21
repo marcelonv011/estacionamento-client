@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/movimentacao/SaidaListView.vue')
   },
   {
-    path: '/marcalist',
+    path: '/marca/lista',
     name: 'marcalist',
 
     component: () => import('../views/marca/MarcaListView.vue')
@@ -21,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/movimentacao/RegistrarEntrada.vue')
   },
   {
-    path: '/registrarmarca',
+    path: '/marca/formulario',
     name: 'registrarmarca',
 
     component: () => import('../views/marca/RegistrarMarca.vue')
