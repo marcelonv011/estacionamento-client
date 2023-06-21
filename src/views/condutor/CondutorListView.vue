@@ -1,15 +1,17 @@
 <template>
   <div class="marca">
-    <button
+    <router-link
       type="button"
       class="btn btn-success mt-4"
-      @click="registrarcondutorredirect"
+      to="/condutor/formulario"
     >
       Cadastrar condutor
-    </button>
+    </router-link>
     <table class="table mt-4 pequeña-table">
       <thead>
         <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Ativo</th>
           <th scope="col">Nome</th>
           <th scope="col">CPF</th>
           <th scope="col">Telefone</th>
@@ -17,10 +19,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="item in CondutoresList" :key="item.id">
+          <td>{{ item.id }}</td>
+          <td>
+            <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
+            <span v-if="!item.ativo" class="badge text-bg-danger">
+              Inativo
+            </span>
+          </td>
+          <td>{{ item.nome }}</td>
+          <td>{{ item.cpf }}</td>
+          <td>{{ item.telefone }}</td>
           <td>
             <button type="button" class="btn btn-secondary btn-color">
               <svg
@@ -61,6 +70,36 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+
+import CondutorClient from "@/client/CondutorClient";
+import { Condutor } from "@/model/Condutor";
+
+export default defineComponent({
+  name: "CondutorLista",
+  data() {
+    return {
+      CondutoresList: new Array<Condutor>(),
+    };
+  },
+  mounted() {
+    this.listaAll();
+  },
+  methods: {
+    listaAll() {
+      CondutorClient.findAll()
+        .then((sucess) => {
+          this.CondutoresList = sucess;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+});
+</script>
+
 <style lang="scss">
 .marca {
   display: flex;
@@ -90,5 +129,3 @@
   border-color: darkred;
 }
 </style>
-
-<script lang="ts"></script>

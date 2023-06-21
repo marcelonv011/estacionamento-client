@@ -27,25 +27,25 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/marca/RegistrarMarca.vue')
   },
   {
-    path: '/modelolist',
+    path: '/modelo/lista',
     name: 'modelolist',
 
     component: () => import('../views/modelo/ModeloListView.vue')
   },
   {
-    path: '/registrarmodelo',
+    path: '/modelo/formulario',
     name: 'registrarmodelo',
 
     component: () => import('../views/modelo/RegistrarModelo.vue')
   },
   {
-    path: '/condutorlist',
+    path: '/condutor/lista',
     name: 'condutorlist',
 
     component: () => import('../views/condutor/CondutorListView.vue')
   },
   {
-    path: '/registrarcondutor',
+    path: '/condutor/formulario',
     name: 'registrarcondutor',
 
     component: () => import('../views/condutor/RegistrarCondutor.vue')

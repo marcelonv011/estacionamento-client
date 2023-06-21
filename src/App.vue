@@ -75,7 +75,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link custom-link" to="/condutorlist"
+            <router-link class="nav-link custom-link" to="/condutor/lista"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
