@@ -1,24 +1,33 @@
 <template>
   <div class="modelo">
-    <button
+    <router-link
       type="button"
       class="btn btn-success mt-4"
-      @click="registrarmodeloredirect"
+      to="/modelo/formulario"
     >
       Cadastrar modelo
-    </button>
+    </router-link>
     <table class="table mt-4 pequeña-table">
       <thead>
         <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Ativo</th>
           <th scope="col">Nome</th>
           <th scope="col">Marca</th>
           <th scope="col">Opcoes</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
+        <tr v-for="item in ModelosList" :key="item.id">
+          <td>{{ item.id }}</td>
+          <td>
+            <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
+            <span v-if="!item.ativo" class="badge text-bg-danger">
+              Inativo
+            </span>
+          </td>
+          <td>{{ item.nome }}</td>
+          <td>{{ item.marca.nome }}</td>
           <td>
             <button type="button" class="btn btn-secondary btn-color">
               <svg
@@ -59,6 +68,36 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+
+import ModeloClient from "@/client/ModeloClient";
+import { Modelo } from "@/model/Modelo";
+
+export default defineComponent({
+  name: "modeloLista",
+  data() {
+    return {
+      ModelosList: new Array<Modelo>(),
+    };
+  },
+  mounted() {
+    this.listaAll();
+  },
+  methods: {
+    listaAll() {
+      ModeloClient.findAll()
+        .then((sucess) => {
+          this.ModelosList = sucess;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+});
+</script>
+
 <style lang="scss">
 .modelo {
   display: flex;
@@ -88,5 +127,3 @@
   border-color: darkred;
 }
 </style>
-
-<script lang="ts"></script>

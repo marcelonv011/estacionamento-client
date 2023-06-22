@@ -55,7 +55,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link custom-link" to="/modelolist"
+            <router-link class="nav-link custom-link" to="/modelo/lista"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -92,7 +92,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link custom-link" to="/veiculolist"
+            <router-link class="nav-link custom-link" to="/veiculo/lista"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
