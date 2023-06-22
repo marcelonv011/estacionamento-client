@@ -26,7 +26,7 @@
             <router-link
               class="nav-link custom-link"
               aria-current="page"
-              to="/saidalist"
+              to="/saida/lista"
               ><img
                 src="./assets/card-account-details-outline.png"
                 alt="saida"

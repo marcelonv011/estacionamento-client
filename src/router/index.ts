@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/saidalist',
+    path: '/saida/lista',
     name: 'saidalist',
 
     component: () => import('../views/movimentacao/SaidaListView.vue')
@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/marca/MarcaListView.vue')
   },
   {
-    path: '/registrarentrada',
+    path: '/saida/formulario',
     name: 'registrarentrada',
 
     component: () => import('../views/movimentacao/RegistrarEntrada.vue')

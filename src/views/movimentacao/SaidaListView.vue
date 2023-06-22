@@ -1,26 +1,33 @@
 <template>
   <div class="condutor">
-    <button
+    <router-link
       type="button"
       class="btn btn-success mt-4"
-      @click="registrarentradaredirect"
+      to="/saida/formulario"
     >
       Cadastrar entrada
-    </button>
+    </router-link>
     <table class="table mt-4">
       <thead>
         <tr>
           <th scope="col">Placa</th>
+          <th scope="col">Ativo</th>
           <th scope="col">Condutor</th>
           <th scope="col">Hora entrada</th>
           <th scope="col">Opcoes</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row"></th>
-          <td></td>
-          <td></td>
+        <tr v-for="item in MovimentacoesList" :key="item.id">
+          <td>{{ item.veiculo.placa }}</td>
+          <td>
+            <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
+            <span v-if="!item.ativo" class="badge text-bg-danger">
+              Inativo
+            </span>
+          </td>
+          <td>{{ item.condutor.nome }}</td>
+          <td>{{ item.entrada }}</td>
           <td>
             <button type="button" class="btn btn-secondary btn-color">
               <svg
@@ -61,6 +68,36 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+
+import MovimentacaoClient from "@/client/MovimentacaoClient";
+import { Movimentacao } from "@/model/Movimentacao";
+
+export default defineComponent({
+  name: "MovimentacaoLista",
+  data() {
+    return {
+      MovimentacoesList: new Array<Movimentacao>(),
+    };
+  },
+  mounted() {
+    this.listaAll();
+  },
+  methods: {
+    listaAll() {
+      MovimentacaoClient.findAll()
+        .then((sucess) => {
+          this.MovimentacoesList = sucess;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+});
+</script>
+
 <style lang="scss">
 .btn-color {
   background-color: rgb(255, 166, 0);
@@ -79,5 +116,3 @@
   border-color: darkred;
 }
 </style>
-
-<script lang="ts"></script>
