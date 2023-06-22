@@ -51,13 +51,13 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/condutor/RegistrarCondutor.vue')
   },
   {
-    path: '/veiculolist',
+    path: '/veiculo/lista',
     name: 'veiculolist',
 
     component: () => import('../views/veiculo/veiculoListView.vue')
   },
   {
-    path: '/registrarveiculo',
+    path: '/veiculo/formulario',
     name: 'registrarveiculo',
 
     component: () => import('../views/veiculo/RegistrarVeiculo.vue')

@@ -1,16 +1,17 @@
 <template>
   <div class="marca">
-    <button
+    <router-link
       type="button"
       class="btn btn-success mt-4"
-      @click="registrarveiculoredirect"
+      to="/veiculo/formulario"
     >
       Cadastrar veiculo
-    </button>
+    </router-link>
     <table class="table mt-4 pequeña-table">
       <thead>
         <tr>
           <th scope="col">Placa</th>
+          <th scope="col">Ativo</th>
           <th scope="col">Modelo</th>
           <th scope="col">Cor</th>
           <th scope="col">Tipo</th>
@@ -19,12 +20,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="item in veiculosList" :key="item.id">
+          <td>{{ item.placa }}</td>
+          <td>
+            <span v-if="item.ativo" class="badge text-bg-success"> Ativo </span>
+            <span v-if="!item.ativo" class="badge text-bg-danger">
+              Inativo
+            </span>
+          </td>
+          <td>{{ item.modelo.nome }}</td>
+          <td>{{ item.cor }}</td>
+          <td>{{ item.tipo }}</td>
+          <td>{{ item.ano }}</td>
           <td>
             <button type="button" class="btn btn-secondary btn-color">
               <svg
@@ -65,6 +72,36 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+
+import VeiculoClient from "@/client/VeiculoClient";
+import { Veiculo } from "@/model/Veiculo";
+
+export default defineComponent({
+  name: "veiculoLista",
+  data() {
+    return {
+      veiculosList: new Array<Veiculo>(),
+    };
+  },
+  mounted() {
+    this.listaAll();
+  },
+  methods: {
+    listaAll() {
+      VeiculoClient.findAll()
+        .then((sucess) => {
+          this.veiculosList = sucess;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+});
+</script>
+
 <style lang="scss">
 .marca {
   display: flex;
@@ -94,5 +131,3 @@
   border-color: darkred;
 }
 </style>
-
-<script lang="ts"></script>
