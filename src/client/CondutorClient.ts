@@ -32,9 +32,9 @@ class CondutorClient {
         }
     }
 
-    public async cadastrar(condutor: Condutor) : Promise<void> {
+    public async cadastrar(condutor: Condutor) : Promise<string> {
         try {
-            return (await this.axiosClient.post(``, condutor)).data
+            return (await this.axiosClient.post<string>(``, condutor)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
