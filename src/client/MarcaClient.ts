@@ -34,16 +34,16 @@ import axios, { AxiosInstance } from "axios";
         }
     }
 
-    public async cadastrar(marca: Marca) : Promise<void> {
+    public async cadastrar(marca: Marca) : Promise<string> {
         try {
-            return (await this.axiosClient.post(``, marca)).data
+            return (await this.axiosClient.post<string>(``, marca)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
         }
     }
     
-    public async atualizar(marca: Marca) : Promise<void> {
+    public async atualizar(marca: Marca) : Promise<string> {
         try{
             return (await this.axiosClient.put(`/${marca.id}`, marca)).data
         }
@@ -52,7 +52,7 @@ import axios, { AxiosInstance } from "axios";
         }
     }
 
-    public async excluir(marca: Marca) : Promise<void> {
+    public async excluir(marca: Marca) : Promise<string> {
         try{
             return (await this.axiosClient.delete(`/${marca.id}`)).data
         }

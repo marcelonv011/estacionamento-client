@@ -12,6 +12,9 @@
       Cadastrar
     </button>
   </form>
+  <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
+    {{ toastMessage }}
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,6 +28,7 @@ export default defineComponent({
   data() {
     return {
       marca: new Marca(),
+      toastMessage: "" as string,
     };
   },
   methods: {
@@ -32,9 +36,10 @@ export default defineComponent({
       MarcaClient.cadastrar(this.marca)
         .then((sucess) => {
           this.marca = new Marca();
+          this.toastMessage = sucess;
         })
         .catch((error) => {
-          console.log(error);
+          this.toastMessage = error.data;
         });
     },
   },
