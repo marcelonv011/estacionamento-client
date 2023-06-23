@@ -1,5 +1,7 @@
 import { Veiculo } from "@/model/Veiculo";
-import axios, { AxiosInstance } from "axios";
+import { Cor } from "@/model/enum/Cor";
+import { Tipo } from "@/model/enum/Tipo";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 
 class VeiculoClient {
@@ -32,10 +34,27 @@ class VeiculoClient {
             return Promise.reject(error.response)
         }
     }
-
-    public async cadastrar(veiculo: Veiculo) : Promise<void> {
+    public async findCor(): Promise<Cor[]> {
         try {
-            return (await this.axiosClient.post(``, veiculo)).data
+          const response: AxiosResponse<Cor[]> = await this.axiosClient.get("/colores");
+          return response.data;
+        } catch (error: any) {
+          return Promise.reject(error.response);
+        }
+      }
+
+      public async findTipo(): Promise<Tipo[]> {
+        try {
+          const response: AxiosResponse<Tipo[]> = await this.axiosClient.get("/tipo");
+          return response.data;
+        } catch (error: any) {
+          return Promise.reject(error.response);
+        }
+      }
+
+    public async cadastrar(veiculo: Veiculo) : Promise<string> {
+        try {
+            return (await this.axiosClient.post<string>(``, veiculo)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
