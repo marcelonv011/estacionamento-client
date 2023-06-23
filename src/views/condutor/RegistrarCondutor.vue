@@ -1,4 +1,7 @@
 <template>
+  <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
+    {{ toastMessage }}
+  </div>
   <form class="d-flex flex-column align-items-center">
     <div class="mt-4 input-container">
       <label class="form-label">Nome</label>
@@ -20,9 +23,6 @@
       Cadastrar
     </button>
   </form>
-  <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
-    {{ toastMessage }}
-  </div>
 </template>
 
 <script lang="ts">
