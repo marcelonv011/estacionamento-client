@@ -51,9 +51,9 @@ class ModeloClient {
         }
     }
 
-    public async excluir(modelo: Modelo) : Promise<void> {
+    public async excluir(id: number) : Promise<string> {
         try {
-            return (await this.axiosClient.delete(`/${modelo.id}`)).data
+            return (await this.axiosClient.delete<string>(`/${id}`)).data
         }
         catch(error:any) {
             return Promise.reject(error.response)
