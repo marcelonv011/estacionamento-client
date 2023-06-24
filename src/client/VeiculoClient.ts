@@ -70,9 +70,9 @@ class VeiculoClient {
         }
     }
 
-    public async excluir(veiculo: Veiculo) : Promise<void> {
+    public async excluir(id: number) : Promise<string> {
         try {
-            return (await this.axiosClient.delete(`/${veiculo.id}`)).data
+            return (await this.axiosClient.delete<string>(`/${id}`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
