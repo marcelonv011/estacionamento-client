@@ -1,5 +1,5 @@
 import { Movimentacao } from "@/model/Movimentacao";
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 
 class MovimentacaoClient {
@@ -53,7 +53,8 @@ class MovimentacaoClient {
 
     public async excluir(id: number) : Promise<string> {
         try {
-            return (await this.axiosClient.delete<string>(`/${id}`)).data
+            const response: AxiosResponse<string> = await this.axiosClient.delete(``, { params: { id } });
+      return response.data;
         }
         catch(error:any){
             return Promise.reject(error.response)
