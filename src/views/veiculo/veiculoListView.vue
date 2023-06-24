@@ -1,5 +1,8 @@
 <template>
   <div class="marca">
+    <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
+      {{ toastMessage }}
+    </div>
     <router-link
       type="button"
       class="btn btn-success mt-4"
@@ -51,7 +54,11 @@
                 />
               </svg>
             </button>
-            <button type="button" class="btn btn-secondary btn-color2 ms-2">
+            <button
+              type="button"
+              class="btn btn-secondary btn-color2 ms-2"
+              @click="onClickExcluir(item.id)"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -83,6 +90,8 @@ export default defineComponent({
   data() {
     return {
       veiculosList: new Array<Veiculo>(),
+      toastMessage: "" as string,
+      veiculo: new Veiculo(),
     };
   },
   mounted() {
@@ -96,6 +105,17 @@ export default defineComponent({
         })
         .catch((error) => {
           console.log(error);
+        });
+    },
+    onClickExcluir(id: number) {
+      VeiculoClient.excluir(id)
+        .then((sucess) => {
+          this.veiculo = new Veiculo();
+          this.toastMessage = sucess;
+          this.listaAll();
+        })
+        .catch((error) => {
+          this.toastMessage = error.data;
         });
     },
   },
