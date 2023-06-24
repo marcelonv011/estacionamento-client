@@ -1,5 +1,5 @@
 import { Condutor } from "@/model/Condutor";
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 class CondutorClient {
 
@@ -52,7 +52,8 @@ class CondutorClient {
 
     public async excluir(id: number) : Promise<string> {
         try {
-            return (await this.axiosClient.delete<string>(`/${id}`)).data
+            const response: AxiosResponse<string> = await this.axiosClient.delete(``, { params: { id } });
+      return response.data;
         }
         catch(error:any){
             return Promise.reject(error.response)
