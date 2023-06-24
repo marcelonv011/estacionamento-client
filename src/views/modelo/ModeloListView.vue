@@ -1,5 +1,8 @@
 <template>
   <div class="modelo">
+    <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
+      {{ toastMessage }}
+    </div>
     <router-link
       type="button"
       class="btn btn-success mt-4"
@@ -47,7 +50,11 @@
                 />
               </svg>
             </button>
-            <button type="button" class="btn btn-secondary btn-color2 ms-2">
+            <button
+              type="button"
+              class="btn btn-secondary btn-color2 ms-2"
+              @click="onClickExcluir(item.id)"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -78,7 +85,9 @@ export default defineComponent({
   name: "modeloLista",
   data() {
     return {
+      modelo: new Modelo(),
       ModelosList: new Array<Modelo>(),
+      toastMessage: "" as string,
     };
   },
   mounted() {
@@ -92,6 +101,17 @@ export default defineComponent({
         })
         .catch((error) => {
           console.log(error);
+        });
+    },
+    onClickExcluir(id: number) {
+      ModeloClient.excluir(id)
+        .then((sucess) => {
+          this.modelo = new Modelo();
+          this.toastMessage = sucess;
+          this.listaAll();
+        })
+        .catch((error) => {
+          this.toastMessage = error.data;
         });
     },
   },
