@@ -1,5 +1,6 @@
 <template>
   <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
+    <button type="button" class="btn" @click="closeToast">x</button>
     {{ toastMessage }}
   </div>
   <form class="d-flex flex-column align-items-center">
@@ -38,8 +39,6 @@ export default defineComponent({
   },
   methods: {
     onClickEditar() {
-      console.log("ID:", this.marca.id);
-      console.log("Marca:", this.marca);
       MarcaClient.atualizar(this.marca.id, this.marca)
         .then(() => {
           this.$router.push({ name: "marcalist" });
@@ -47,6 +46,9 @@ export default defineComponent({
         .catch((error) => {
           this.toastMessage = error.data;
         });
+    },
+    closeToast() {
+      this.toastMessage = "";
     },
   },
   created() {
