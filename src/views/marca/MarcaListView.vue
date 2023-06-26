@@ -1,6 +1,7 @@
 <template>
   <div class="marca">
     <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
+      <button type="button" class="btn" @click="closeToast">x</button>
       {{ toastMessage }}
     </div>
     <router-link
@@ -118,6 +119,9 @@ export default defineComponent({
     },
     onClickEditar(id: number) {
       this.$router.push({ name: "marcaeditar", params: { id } });
+    },
+    closeToast() {
+      this.toastMessage = "";
     },
   },
 });

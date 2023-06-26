@@ -7,6 +7,9 @@
       <label class="form-label">Nome</label>
       <input class="form-control" placeholder="" v-model="marca.nome" />
     </div>
+    <router-link type="button" class="btn btn-danger" to="/marca/lista">
+      Voltar
+    </router-link>
     <button type="button" class="btn btn-success mt-4" @click="onClickEditar()">
       Atualizar
     </button>
@@ -32,7 +35,7 @@ export default defineComponent({
       console.log("ID:", this.marca.id);
       console.log("Marca:", this.marca);
       MarcaClient.atualizar(this.marca.id, this.marca)
-        .then((success) => {
+        .then(() => {
           this.$router.push({ name: "marcalist" });
         })
         .catch((error) => {
