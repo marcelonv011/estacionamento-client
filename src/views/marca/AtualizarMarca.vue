@@ -7,12 +7,18 @@
       <label class="form-label">Nome</label>
       <input class="form-control" placeholder="" v-model="marca.nome" />
     </div>
-    <router-link type="button" class="btn btn-danger" to="/marca/lista">
-      Voltar
-    </router-link>
-    <button type="button" class="btn btn-success mt-4" @click="onClickEditar()">
-      Atualizar
-    </button>
+    <div class="d-flex justify-content-between">
+      <router-link type="button" class="btn btn-danger mt-4" to="/marca/lista">
+        Voltar
+      </router-link>
+      <button
+        type="button"
+        class="btn btn-success mt-4 ms-2"
+        @click="onClickEditar"
+      >
+        atualizar
+      </button>
+    </div>
   </form>
 </template>
 
