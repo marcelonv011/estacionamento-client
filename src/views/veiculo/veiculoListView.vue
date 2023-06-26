@@ -36,7 +36,11 @@
           <td>{{ item.tipo }}</td>
           <td>{{ item.ano }}</td>
           <td>
-            <button type="button" class="btn btn-secondary btn-color">
+            <button
+              type="button"
+              class="btn btn-secondary btn-color"
+              @click="showModal = true"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -54,6 +58,102 @@
                 />
               </svg>
             </button>
+
+            <div v-if="showModal" class="modal">
+              <div class="modal-content">
+                <span class="close" @click="showModal = false">&times;</span>
+                <div
+                  v-if="toastMessage"
+                  class="alert alert-success mt-4"
+                  role="alert"
+                >
+                  {{ toastMessage }}
+                </div>
+                <form class="d-flex flex-column align-items-center">
+                  <div class="mt-4 input-container">
+                    <label class="form-label">Placa</label>
+                    <input
+                      class="form-control"
+                      placeholder=""
+                      v-model="veiculo.placa"
+                    />
+                  </div>
+                  <div class="mt-4 inputselect input-container">
+                    <label> Modelo </label>
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                      v-model="veiculo.modelo"
+                    >
+                      <option selected disabled value="">
+                        Selecione um modelo de o veiculo
+                      </option>
+                      <option
+                        :value="item"
+                        v-for="item in modelosList"
+                        :key="item.id"
+                      >
+                        {{ item.nome }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="mt-4 inputselect input-container">
+                    <label> Cor </label>
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                      v-model="veiculo.cor"
+                    >
+                      <option selected disabled value="">
+                        Selecione o cor de o veiculo
+                      </option>
+                      <option
+                        :value="item"
+                        v-for="item in coloresList"
+                        :key="item"
+                      >
+                        {{ item }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="mt-4 inputselect input-container">
+                    <label> Tipo </label>
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                      v-model="veiculo.tipo"
+                    >
+                      <option selected disabled value="">
+                        Selecione um Tipo de veiculo
+                      </option>
+                      <option
+                        :value="item"
+                        v-for="item in tiposList"
+                        :key="item"
+                      >
+                        {{ item }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="mt-4 input-container">
+                    <label class="form-label">Ano</label>
+                    <input
+                      class="form-control"
+                      placeholder=""
+                      v-model="veiculo.ano"
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-color2 ms-2"
+                    @click="onClickAtualizar(item.id)"
+                  >
+                    Guardar cambios
+                  </button>
+                </form>
+              </div>
+            </div>
             <button
               type="button"
               class="btn btn-secondary btn-color2 ms-2"
@@ -83,7 +183,12 @@
 import { defineComponent } from "vue";
 
 import VeiculoClient from "@/client/VeiculoClient";
+import ModeloClient from "@/client/ModeloClient";
+
 import { Veiculo } from "@/model/Veiculo";
+import { Modelo } from "@/model/Modelo";
+import { Cor } from "@/model/enum/Cor";
+import { Tipo } from "@/model/enum/Tipo";
 
 export default defineComponent({
   name: "veiculoLista",
@@ -91,11 +196,18 @@ export default defineComponent({
     return {
       veiculosList: new Array<Veiculo>(),
       toastMessage: "" as string,
+      modelosList: [] as Modelo[],
+      coloresList: [] as Cor[],
+      tiposList: [] as Tipo[],
       veiculo: new Veiculo(),
+      showModal: false,
     };
   },
   mounted() {
     this.listaAll();
+    this.selectModeloList();
+    this.selectCorList();
+    this.selectTipoList();
   },
   methods: {
     listaAll() {
@@ -116,6 +228,43 @@ export default defineComponent({
         })
         .catch((error) => {
           this.toastMessage = error.data;
+        });
+    },
+    onClickAtualizar(id: number) {
+      VeiculoClient.atualizar(id, this.veiculo)
+        .then((sucess) => {
+          this.veiculo = new Veiculo();
+          this.toastMessage = sucess;
+        })
+        .catch((error) => {
+          this.toastMessage = error.data;
+        });
+    },
+    selectModeloList() {
+      ModeloClient.findAll()
+        .then((response) => {
+          this.modelosList = response;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    selectCorList() {
+      VeiculoClient.findCor()
+        .then((response) => {
+          this.coloresList = response;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    selectTipoList() {
+      VeiculoClient.findTipo()
+        .then((response) => {
+          this.tiposList = response;
+        })
+        .catch((error) => {
+          console.log(error);
         });
     },
   },
@@ -149,5 +298,40 @@ export default defineComponent({
 .btn-color2:hover {
   background-color: darkred;
   border-color: darkred;
+}
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>

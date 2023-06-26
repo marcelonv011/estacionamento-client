@@ -18,7 +18,7 @@ import axios, { AxiosInstance, AxiosResponse } from "axios";
 
     public async findById(id: number) : Promise<Marca> {
         try{
-            return(await this.axiosClient.get<Marca>(`?id=${id}`)).data
+            return(await this.axiosClient.get<Marca>(`/${id}`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
@@ -43,14 +43,13 @@ import axios, { AxiosInstance, AxiosResponse } from "axios";
         }
     }
     
-    public async atualizar(marca: Marca) : Promise<string> {
-        try{
-            return (await this.axiosClient.put(`/${marca.id}`, marca)).data
+    public async atualizar(id: number, marca: Marca): Promise<string> {
+        try {
+          return (await this.axiosClient.put<string>(`/${id}`, marca)).data;
+        } catch (error: any) {
+          return Promise.reject(error.response);
         }
-        catch(error:any){
-            return Promise.reject(error.response)
-        }
-    }
+      }
 
     public async excluir(id: number) : Promise<string> {
         try {

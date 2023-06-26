@@ -61,7 +61,13 @@ const routes: Array<RouteRecordRaw> = [
     name: 'registrarveiculo',
 
     component: () => import('../views/veiculo/RegistrarVeiculo.vue')
-  }
+  },
+  {
+    path: '/marca/editar/:id',
+    name: 'marcaeditar',
+
+    component: () => import('../views/marca/AtualizarMarca.vue')
+  },
 ]
 
 const router = createRouter({

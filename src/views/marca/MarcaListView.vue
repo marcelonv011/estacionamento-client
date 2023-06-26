@@ -30,7 +30,11 @@
           </td>
           <td>{{ item.nome }}</td>
           <td>
-            <button type="button" class="btn btn-secondary btn-color">
+            <button
+              type="button"
+              class="btn btn-secondary btn-color"
+              @click="onClickEditar(item.id)"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -111,6 +115,9 @@ export default defineComponent({
         .catch((error) => {
           this.toastMessage = error.data;
         });
+    },
+    onClickEditar(id: number) {
+      this.$router.push({ name: "marcaeditar", params: { id } });
     },
   },
 });
