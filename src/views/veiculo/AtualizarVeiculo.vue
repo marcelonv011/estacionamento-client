@@ -53,9 +53,22 @@
       <label class="form-label">Ano</label>
       <input class="form-control" placeholder="" v-model="veiculo.ano" />
     </div>
-    <button type="button" class="btn btn-success mt-4" @click="onClickEditar">
-      Cadastrar
-    </button>
+    <div class="d-flex justify-content-between">
+      <router-link
+        type="button"
+        class="btn btn-danger mt-4"
+        to="/veiculo/lista"
+      >
+        Voltar
+      </router-link>
+      <button
+        type="button"
+        class="btn btn-success mt-4 ms-2"
+        @click="onClickEditar"
+      >
+        atualizar
+      </button>
+    </div>
   </form>
 </template>
 

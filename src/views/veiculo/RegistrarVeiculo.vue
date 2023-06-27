@@ -1,5 +1,6 @@
 <template>
   <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
+    <button type="button" class="btn" @click="closeToast">x</button>
     {{ toastMessage }}
   </div>
   <form class="d-flex flex-column align-items-center">
@@ -52,13 +53,22 @@
       <label class="form-label">Ano</label>
       <input class="form-control" placeholder="" v-model="veiculo.ano" />
     </div>
-    <button
-      type="button"
-      class="btn btn-success mt-4"
-      @click="onClickCadastrar"
-    >
-      Cadastrar
-    </button>
+    <div class="d-flex justify-content-between">
+      <router-link
+        type="button"
+        class="btn btn-danger mt-4"
+        to="/veiculo/lista"
+      >
+        Voltar
+      </router-link>
+      <button
+        type="button"
+        class="btn btn-success mt-4 ms-2"
+        @click="onClickCadastrar"
+      >
+        Cadastrar
+      </button>
+    </div>
   </form>
 </template>
 
@@ -126,6 +136,9 @@ export default defineComponent({
         .catch((error) => {
           this.toastMessage = error.data;
         });
+    },
+    closeToast() {
+      this.toastMessage = "";
     },
   },
 });

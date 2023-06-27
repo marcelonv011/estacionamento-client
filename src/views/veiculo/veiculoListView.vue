@@ -1,6 +1,7 @@
 <template>
   <div class="marca">
     <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
+      <button type="button" class="btn" @click="closeToast">x</button>
       {{ toastMessage }}
     </div>
     <router-link
@@ -162,6 +163,9 @@ export default defineComponent({
         .catch((error) => {
           console.log(error);
         });
+    },
+    closeToast() {
+      this.toastMessage = "";
     },
   },
 });
