@@ -42,9 +42,18 @@
         </option>
       </select>
     </div>
-    <button type="button" class="btn btn-success mt-4" @click="onClickEditar">
-      Atualizar
-    </button>
+    <div class="d-flex justify-content-between">
+      <router-link type="button" class="btn btn-danger mt-4" to="/saida/lista">
+        Voltar
+      </router-link>
+      <button
+        type="button"
+        class="btn btn-success mt-4 ms-2"
+        @click="onClickEditar"
+      >
+        Atualizar
+      </button>
+    </div>
   </form>
 </template>
 
