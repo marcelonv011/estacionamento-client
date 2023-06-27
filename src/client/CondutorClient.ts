@@ -16,7 +16,7 @@ class CondutorClient {
 
     public async findById(id: number) : Promise<Condutor> {
         try {
-            return (await this.axiosClient.get<Condutor>(`?id=${id}`)).data
+            return (await this.axiosClient.get<Condutor>(`/${id}`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
@@ -41,14 +41,13 @@ class CondutorClient {
         }
     }
 
-    public async atualizar(condutor: Condutor) : Promise<void> {
+    public async atualizar(id: number, condutor: Condutor): Promise<string> {
         try {
-            return (await this.axiosClient.put(`/${condutor.id}`, condutor)).data
+          return (await this.axiosClient.put<string>(`/${id}`, condutor)).data;
+        } catch (error: any) {
+          return Promise.reject(error.response);
         }
-        catch(error:any){
-            return Promise.reject(error.response)
-        }
-    }
+      }
 
     public async excluir(id: number) : Promise<string> {
         try {

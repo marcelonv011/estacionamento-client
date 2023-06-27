@@ -80,6 +80,12 @@ const routes: Array<RouteRecordRaw> = [
 
     component: () => import('../views/modelo/AtualizarModelo.vue')
   },
+  {
+    path: '/condutor/editar/:id',
+    name: 'condutoreditar',
+
+    component: () => import('../views/condutor/AtualizarCondutor.vue')
+  },
 ]
 
 const router = createRouter({

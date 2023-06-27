@@ -8,10 +8,7 @@
       <label class="form-label">Nome</label>
       <input class="form-control" placeholder="" v-model="condutor.nome" />
     </div>
-    <div class="mt-4 input-container">
-      <label class="form-label">CPF</label>
-      <input class="form-control" placeholder="" v-model="condutor.cpf" />
-    </div>
+
     <div class="mt-4 input-container">
       <label class="form-label">Telefone</label>
       <input class="form-control" placeholder="" v-model="condutor.telefone" />
@@ -27,7 +24,7 @@
       <button
         type="button"
         class="btn btn-success mt-4 ms-2"
-        @click="onClickCadastrar"
+        @click="onClickEditar"
       >
         atualizar
       </button>
@@ -50,11 +47,10 @@ export default defineComponent({
     };
   },
   methods: {
-    onClickCadastrar() {
-      CondutorClient.cadastrar(this.condutor)
-        .then((sucess) => {
-          this.condutor = new Condutor();
-          this.toastMessage = sucess;
+    onClickEditar() {
+      CondutorClient.atualizar(this.condutor.id, this.condutor)
+        .then(() => {
+          this.$router.push({ name: "condutorlist" });
         })
         .catch((error) => {
           this.toastMessage = error.data;
@@ -63,6 +59,19 @@ export default defineComponent({
     closeToast() {
       this.toastMessage = "";
     },
+  },
+  created() {
+    const id = Number(this.$route.params.id);
+
+    if (!isNaN(id)) {
+      CondutorClient.findById(id)
+        .then((condutor) => {
+          this.condutor = condutor;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   },
 });
 </script>
