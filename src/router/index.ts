@@ -93,11 +93,24 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/movimentacao/AtualizarMovimentacao.vue')
   },
   {
-    path: '/configuracao/lista',
-    name: 'configuracaolist',
+    path: '/ajuste/lista',
+    name: 'ajustelist',
 
-    component: () => import('../views/configuracion/ConfiguracaoListView.vue')
+    component: () => import('../views/ajuste/AjusteListView.vue')
   },
+  {
+    path: '/ajuste/editar/:id',
+    name: 'ajusteeditar',
+
+    component: () => import('../views/ajuste/AtualizarAjuste.vue')
+  },
+  {
+    path: '/ajuste/formulario',
+    name: 'ajusteformulario',
+
+    component: () => import('../views/ajuste/RegistrarAjuste.vue')
+  },
+ 
 ]
 
 const router = createRouter({
