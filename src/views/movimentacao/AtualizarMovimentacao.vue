@@ -103,8 +103,8 @@ export default defineComponent({
     },
     onClickEditar() {
       MovimentacaoClient.atualizar(this.movimentacao.id, this.movimentacao)
-        .then(() => {
-          this.$router.push({ name: "saidalist" });
+        .then((sucess) => {
+          this.toastMessage = sucess;
         })
         .catch((error) => {
           this.toastMessage = error.data;

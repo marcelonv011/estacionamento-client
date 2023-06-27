@@ -18,6 +18,7 @@
           <th scope="col">Ativo</th>
           <th scope="col">Condutor</th>
           <th scope="col">Hora entrada</th>
+          <th scope="col">Hora saida</th>
           <th scope="col">Opcoes</th>
         </tr>
       </thead>
@@ -32,6 +33,7 @@
           </td>
           <td>{{ item.condutor.nome }}</td>
           <td>{{ item.entrada }}</td>
+          <td>{{ item.saida }}</td>
           <td>
             <button
               type="button"
