@@ -33,7 +33,12 @@
           </td>
           <td>{{ item.condutor.nome }}</td>
           <td>{{ item.entrada }}</td>
-          <td>{{ item.saida }}</td>
+          <td>
+            <span v-if="item.saida"> {{ item.saida }} </span>
+            <span v-if="!item.saida" class="badge text-bg-danger">
+              ABERTA
+            </span>
+          </td>
           <td>
             <button
               type="button"
