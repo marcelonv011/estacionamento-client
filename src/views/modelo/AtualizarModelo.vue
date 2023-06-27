@@ -29,7 +29,7 @@
       <button
         type="button"
         class="btn btn-success mt-4 ms-2"
-        @click="onClickCadastrar"
+        @click="onClickEditar"
       >
         atualizar
       </button>
@@ -67,11 +67,10 @@ export default defineComponent({
           console.log(error);
         });
     },
-    onClickCadastrar() {
-      ModeloClient.cadastrar(this.modelo)
-        .then((sucess) => {
-          this.modelo = new Modelo();
-          this.toastMessage = sucess;
+    onClickEditar() {
+      ModeloClient.atualizar(this.modelo.id, this.modelo)
+        .then(() => {
+          this.$router.push({ name: "modelolist" });
         })
         .catch((error) => {
           this.toastMessage = error.data;
@@ -80,6 +79,19 @@ export default defineComponent({
     closeToast() {
       this.toastMessage = "";
     },
+  },
+  created() {
+    const id = Number(this.$route.params.id);
+
+    if (!isNaN(id)) {
+      ModeloClient.findById(id)
+        .then((modelo) => {
+          this.modelo = modelo;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   },
 });
 </script>

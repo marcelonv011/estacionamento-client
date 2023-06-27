@@ -17,7 +17,7 @@ class ModeloClient {
 
     public async findById(id: number) : Promise<Modelo> {
         try {
-            return (await this.axiosClient.get<Modelo>(`?id=${id}`)).data
+            return (await this.axiosClient.get<Modelo>(`/${id}`)).data
         }
         catch(error:any){
             return Promise.reject(error.response)
@@ -42,14 +42,13 @@ class ModeloClient {
         }
     }
     
-    public async atualizar(modelo: Modelo) : Promise<void> {
+    public async atualizar(id: number, modelo: Modelo): Promise<string> {
         try {
-            return (await this.axiosClient.put(`/${modelo.id}`, modelo)).data
+          return (await this.axiosClient.put<string>(`/${id}`, modelo)).data;
+        } catch (error: any) {
+          return Promise.reject(error.response);
         }
-        catch(error:any){
-            return Promise.reject(error.response)
-        }
-    }
+      }
 
     public async excluir(id: number) : Promise<string> {
         try {

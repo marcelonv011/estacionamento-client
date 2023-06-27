@@ -74,6 +74,12 @@ const routes: Array<RouteRecordRaw> = [
 
     component: () => import('../views/veiculo/AtualizarVeiculo.vue')
   },
+  {
+    path: '/modelo/editar/:id',
+    name: 'modeloeditar',
+
+    component: () => import('../views/modelo/AtualizarModelo.vue')
+  },
 ]
 
 const router = createRouter({

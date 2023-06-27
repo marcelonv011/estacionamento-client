@@ -1,6 +1,7 @@
 <template>
   <div class="modelo">
     <div v-if="toastMessage" class="alert alert-success mt-4" role="alert">
+      <button type="button" class="btn" @click="closeToast">x</button>
       {{ toastMessage }}
     </div>
     <router-link
@@ -32,7 +33,11 @@
           <td>{{ item.nome }}</td>
           <td>{{ item.marca.nome }}</td>
           <td>
-            <button type="button" class="btn btn-secondary btn-color">
+            <button
+              type="button"
+              class="btn btn-secondary btn-color"
+              @click="onClickEditar(item.id)"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -113,6 +118,12 @@ export default defineComponent({
         .catch((error) => {
           this.toastMessage = error.data;
         });
+    },
+    onClickEditar(id: number) {
+      this.$router.push({ name: "modeloeditar", params: { id } });
+    },
+    closeToast() {
+      this.toastMessage = "";
     },
   },
 });
