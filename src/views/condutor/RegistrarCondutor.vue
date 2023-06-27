@@ -29,7 +29,7 @@
         class="btn btn-success mt-4 ms-2"
         @click="onClickCadastrar"
       >
-        atualizar
+        Cadastrar
       </button>
     </div>
   </form>
