@@ -92,6 +92,12 @@ const routes: Array<RouteRecordRaw> = [
 
     component: () => import('../views/movimentacao/AtualizarMovimentacao.vue')
   },
+  {
+    path: '/configuracao/lista',
+    name: 'configuracaolist',
+
+    component: () => import('../views/configuracion/ConfiguracaoListView.vue')
+  },
 ]
 
 const router = createRouter({
